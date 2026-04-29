@@ -9,7 +9,6 @@
   <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
 
   <style>
-    /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -22,7 +21,6 @@
       flex-direction: column;
     }
 
-    /* ── Header ── */
     .header {
       background: #0078d4;
       color: #fff;
@@ -32,19 +30,9 @@
       gap: 10px;
       box-shadow: 0 2px 4px rgba(0,0,0,.18);
     }
-    .header svg { flex-shrink: 0; }
-    .header-text h1 {
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-    .header-text p {
-      font-size: 11px;
-      opacity: .85;
-      margin-top: 2px;
-    }
+    .header-text h1 { font-size: 15px; font-weight: 600; line-height: 1.2; }
+    .header-text p  { font-size: 11px; opacity: .85; margin-top: 2px; }
 
-    /* ── Main content ── */
     .content {
       flex: 1;
       padding: 16px;
@@ -54,7 +42,6 @@
       overflow-y: auto;
     }
 
-    /* ── Section card ── */
     .card {
       background: #fff;
       border: 1px solid #edebe9;
@@ -70,18 +57,14 @@
       margin-bottom: 10px;
     }
 
-    /* ── Input row ── */
-    .input-row {
-      display: flex;
-      gap: 8px;
-      align-items: stretch;
-    }
+    .input-row { display: flex; gap: 8px; align-items: stretch; }
+
     .char-input {
       flex: 1;
       border: 1px solid #c8c6c4;
       border-radius: 4px;
       padding: 8px 10px;
-      font-size: 18px;          /* large so emojis render clearly */
+      font-size: 18px;
       line-height: 1.4;
       outline: none;
       transition: border-color .15s;
@@ -92,10 +75,8 @@
       border-color: #0078d4;
       box-shadow: 0 0 0 2px rgba(0,120,212,.2);
     }
-    .char-input::placeholder {
-      font-size: 13px;
-      color: #a19f9d;
-    }
+    .char-input::placeholder { font-size: 13px; color: #a19f9d; }
+
     .btn-add {
       flex-shrink: 0;
       background: #0078d4;
@@ -110,12 +91,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 1;
     }
     .btn-add:hover  { background: #106ebe; }
     .btn-add:active { background: #005a9e; }
 
-    /* ── Tag list ── */
     .tag-list {
       display: flex;
       flex-wrap: wrap;
@@ -159,22 +138,10 @@
     }
     .tag-remove:hover { color: #a4262c; }
 
-    /* ── Options ── */
-    .option-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-    }
-    .option-row input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-      accent-color: #0078d4;
-    }
+    .option-row { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+    .option-row input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: #0078d4; }
     .option-row label { cursor: pointer; }
 
-    /* ── Action buttons ── */
     .btn-remove {
       width: 100%;
       background: #0078d4;
@@ -193,10 +160,7 @@
     }
     .btn-remove:hover  { background: #106ebe; }
     .btn-remove:active { background: #005a9e; }
-    .btn-remove:disabled {
-      background: #c8c6c4;
-      cursor: not-allowed;
-    }
+    .btn-remove:disabled { background: #c8c6c4; cursor: not-allowed; }
 
     .btn-clear-all {
       width: 100%;
@@ -210,12 +174,8 @@
       cursor: pointer;
       transition: background .15s, color .15s;
     }
-    .btn-clear-all:hover {
-      background: #a4262c;
-      color: #fff;
-    }
+    .btn-clear-all:hover { background: #a4262c; color: #fff; }
 
-    /* ── Status / result banner ── */
     .status {
       border-radius: 4px;
       padding: 10px 12px;
@@ -223,38 +183,23 @@
       line-height: 1.4;
       display: none;
     }
-    .status.show { display: block; }
-    .status.success {
-      background: #dff6dd;
-      border: 1px solid #107c10;
-      color: #0b5a08;
-    }
-    .status.error {
-      background: #fde7e9;
-      border: 1px solid #a4262c;
-      color: #6e0811;
-    }
-    .status.info {
-      background: #deecf9;
-      border: 1px solid #0078d4;
-      color: #004578;
-    }
+    .status.show   { display: block; }
+    .status.success { background: #dff6dd; border: 1px solid #107c10; color: #0b5a08; }
+    .status.error   { background: #fde7e9; border: 1px solid #a4262c; color: #6e0811; }
+    .status.info    { background: #deecf9; border: 1px solid #0078d4; color: #004578; }
 
-    /* ── Spinner ── */
     .spinner {
-      width: 16px;
-      height: 16px;
+      width: 16px; height: 16px;
       border: 2px solid rgba(255,255,255,.4);
       border-top-color: #fff;
       border-radius: 50%;
       animation: spin .7s linear infinite;
       display: none;
     }
-    .btn-remove.loading .spinner { display: inline-block; }
+    .btn-remove.loading .spinner  { display: inline-block; }
     .btn-remove.loading .btn-label { display: none; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── Footer ── */
     .footer {
       padding: 8px 16px;
       font-size: 11px;
@@ -266,50 +211,32 @@
 </head>
 <body>
 
-  <!-- Header -->
   <div class="header">
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-      <rect width="28" height="28" rx="5" fill="rgba(255,255,255,0.15)"/>
-      <text x="5" y="21" font-size="17" fill="white">✂️</text>
-    </svg>
     <div class="header-text">
       <h1>Character Remover</h1>
       <p>Remove special characters &amp; emojis</p>
     </div>
   </div>
 
-  <!-- Main content -->
   <div class="content">
 
-    <!-- Step 1: Add characters -->
     <div class="card">
       <div class="card-title">Step 1 — Add characters to remove</div>
-
       <div class="input-row">
-        <input
-          id="charInput"
-          class="char-input"
-          type="text"
+        <input id="charInput" class="char-input" type="text"
           placeholder="Type or paste a character / emoji…"
-          autocomplete="off"
-          spellcheck="false"
-        />
+          autocomplete="off" spellcheck="false" />
         <button class="btn-add" id="btnAdd" title="Add character" aria-label="Add character">+</button>
       </div>
-
       <p style="font-size:11px;color:#605e5c;margin:6px 0 10px;">
-        You can type multiple characters in the box at once (e.g. <strong>😀🔥★</strong>) and they will each be added as separate entries.
+        You can type multiple characters at once (e.g. <strong>😀🔥★</strong>) and they will each be added as separate entries.
       </p>
-
-      <!-- Tag list -->
       <div class="tag-list empty" id="tagList" aria-label="Characters to remove" aria-live="polite"></div>
     </div>
 
-    <!-- Step 2: Options -->
     <div class="card">
       <div class="card-title">Step 2 — Options</div>
-
-      <div class="option-row">
+      <div class="option-row" id="allSheetsRow">
         <input type="checkbox" id="optAllSheets" />
         <label for="optAllSheets">
           <strong>Excel:</strong> Apply to all worksheets (not just the active sheet)
@@ -317,32 +244,302 @@
       </div>
     </div>
 
-    <!-- Step 3: Remove -->
     <div class="card">
       <div class="card-title">Step 3 — Remove</div>
-
       <button class="btn-remove" id="btnRemove" disabled>
         <span class="spinner" aria-hidden="true"></span>
         <span class="btn-label">Remove Characters from Document</span>
       </button>
-
       <div style="height:8px;"></div>
-
-      <button class="btn-clear-all" id="btnClearAll">
-        Clear All Added Characters
-      </button>
+      <button class="btn-clear-all" id="btnClearAll">Clear All Added Characters</button>
     </div>
 
-    <!-- Status message -->
     <div class="status" id="statusBox" role="alert" aria-live="assertive"></div>
 
   </div>
 
-  <!-- Footer -->
   <div class="footer">Works in Microsoft Word &amp; Excel</div>
 
-  <!-- Main logic -->
-  <script src="src/taskpane.js"></script>
+  <script>
+    /* ============================================================
+       Character Remover — All logic inlined for reliability
+       ============================================================ */
+    "use strict";
+
+    /* ── State ── */
+    var charSet = new Set();
+
+    /* ── DOM refs ── */
+    var charInput    = document.getElementById("charInput");
+    var btnAdd       = document.getElementById("btnAdd");
+    var tagList      = document.getElementById("tagList");
+    var btnRemove    = document.getElementById("btnRemove");
+    var btnClearAll  = document.getElementById("btnClearAll");
+    var statusBox    = document.getElementById("statusBox");
+    var optAllSheets = document.getElementById("optAllSheets");
+    var allSheetsRow = document.getElementById("allSheetsRow");
+
+    /* ── Office initialisation ── */
+    Office.onReady(function (info) {
+      if (info.host === Office.HostType.Word) {
+        allSheetsRow.style.display = "none";
+      }
+    });
+
+    /* ── Helpers ── */
+    function splitGraphemes(str) {
+      if (typeof Intl !== "undefined" && typeof Intl.Segmenter === "function") {
+        var segmenter = new Intl.Segmenter();
+        return Array.from(segmenter.segment(str), function(s) { return s.segment; });
+      }
+      return Array.from(str);
+    }
+
+    function showStatus(message, type) {
+      statusBox.textContent = message;
+      statusBox.className = "status show " + type;
+    }
+
+    function hideStatus() {
+      statusBox.className = "status";
+    }
+
+    function renderTags() {
+      tagList.innerHTML = "";
+
+      if (charSet.size === 0) {
+        tagList.classList.add("empty");
+        btnRemove.disabled = true;
+        return;
+      }
+
+      tagList.classList.remove("empty");
+      btnRemove.disabled = false;
+
+      charSet.forEach(function (ch) {
+        var tag = document.createElement("span");
+        tag.className = "tag";
+
+        var charSpan = document.createElement("span");
+        charSpan.textContent = ch;
+        tag.appendChild(charSpan);
+
+        var removeBtn = document.createElement("button");
+        removeBtn.className = "tag-remove";
+        removeBtn.innerHTML = "&#x2715;";
+        removeBtn.title = "Remove this character";
+        removeBtn.setAttribute("aria-label", "Remove character");
+        (function(character) {
+          removeBtn.addEventListener("click", function () {
+            charSet.delete(character);
+            renderTags();
+            hideStatus();
+          });
+        })(ch);
+        tag.appendChild(removeBtn);
+
+        tagList.appendChild(tag);
+      });
+    }
+
+    function addCharsFromInput() {
+      var raw = charInput.value.trim();
+      if (!raw) return;
+
+      var clusters = splitGraphemes(raw);
+      var added = 0;
+      clusters.forEach(function (cluster) {
+        if (!charSet.has(cluster)) {
+          charSet.add(cluster);
+          added++;
+        }
+      });
+
+      charInput.value = "";
+      charInput.focus();
+      renderTags();
+
+      if (added > 0) {
+        hideStatus();
+      }
+    }
+
+    /* ── Event listeners ── */
+    btnAdd.addEventListener("click", addCharsFromInput);
+
+    charInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addCharsFromInput();
+      }
+    });
+
+    btnClearAll.addEventListener("click", function () {
+      charSet.clear();
+      renderTags();
+      hideStatus();
+    });
+
+    btnRemove.addEventListener("click", removeCharacters);
+
+    /* ── Core removal logic ── */
+    function setLoading(loading) {
+      if (loading) {
+        btnRemove.classList.add("loading");
+        btnRemove.disabled = true;
+      } else {
+        btnRemove.classList.remove("loading");
+        btnRemove.disabled = charSet.size === 0;
+      }
+    }
+
+    async function removeCharacters() {
+      if (charSet.size === 0) {
+        showStatus("Please add at least one character before removing.", "error");
+        return;
+      }
+
+      setLoading(true);
+      hideStatus();
+
+      try {
+        var host = Office.context.host;
+
+        if (host === Office.HostType.Word) {
+          await removeFromWord();
+        } else if (host === Office.HostType.Excel) {
+          await removeFromExcel();
+        } else {
+          showStatus("Unsupported Office host. This add-in works in Word and Excel only.", "error");
+        }
+      } catch (err) {
+        console.error("Character Remover error:", err);
+        showStatus("An error occurred: " + (err.message || String(err)), "error");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    /* ── Word removal ── */
+    async function removeFromWord() {
+      var totalRemoved = 0;
+      var chars = Array.from(charSet);
+
+      await Word.run(async function (context) {
+        for (var i = 0; i < chars.length; i++) {
+          var ch = chars[i];
+          var results = context.document.body.search(ch, {
+            matchCase: true,
+            matchWholeWord: false,
+            matchWildcards: false,
+          });
+          context.load(results, "items");
+          await context.sync();
+
+          totalRemoved += results.items.length;
+          for (var j = 0; j < results.items.length; j++) {
+            results.items[j].insertText("", Word.InsertLocation.replace);
+          }
+          await context.sync();
+        }
+
+        // Also clean headers and footers
+        var sections = context.document.sections;
+        context.load(sections, "items");
+        await context.sync();
+
+        for (var s = 0; s < sections.items.length; s++) {
+          var section = sections.items[s];
+          var hfTypes = [
+            Word.HeaderFooterType.primary,
+            Word.HeaderFooterType.firstPage,
+            Word.HeaderFooterType.evenPages,
+          ];
+
+          for (var t = 0; t < hfTypes.length; t++) {
+            for (var isHeader = 0; isHeader <= 1; isHeader++) {
+              try {
+                var hf = isHeader
+                  ? section.getHeader(hfTypes[t])
+                  : section.getFooter(hfTypes[t]);
+
+                for (var c = 0; c < chars.length; c++) {
+                  var hfResults = hf.search(chars[c], {
+                    matchCase: true,
+                    matchWholeWord: false,
+                    matchWildcards: false,
+                  });
+                  context.load(hfResults, "items");
+                  await context.sync();
+
+                  totalRemoved += hfResults.items.length;
+                  for (var r = 0; r < hfResults.items.length; r++) {
+                    hfResults.items[r].insertText("", Word.InsertLocation.replace);
+                  }
+                  await context.sync();
+                }
+              } catch (_) { /* header/footer may not exist */ }
+            }
+          }
+        }
+      });
+
+      var charLabel = charSet.size === 1 ? "character" : "characters";
+      showStatus(
+        "Done! Removed " + totalRemoved + " instance" + (totalRemoved !== 1 ? "s" : "") +
+        " of " + charSet.size + " " + charLabel + " from the document.",
+        "success"
+      );
+    }
+
+    /* ── Excel removal ── */
+    async function removeFromExcel() {
+      var totalRemoved = 0;
+      var processAllSheets = optAllSheets.checked;
+      var chars = Array.from(charSet);
+
+      await Excel.run(async function (context) {
+        var sheets;
+
+        if (processAllSheets) {
+          var sheetCollection = context.workbook.worksheets;
+          sheetCollection.load("items");
+          await context.sync();
+          sheets = sheetCollection.items;
+        } else {
+          sheets = [context.workbook.worksheets.getActiveWorksheet()];
+          await context.sync();
+        }
+
+        for (var s = 0; s < sheets.length; s++) {
+          var sheet = sheets[s];
+          var usedRange;
+          try {
+            usedRange = sheet.getUsedRange();
+            usedRange.load("address");
+            await context.sync();
+          } catch (_) { continue; }
+
+          for (var c = 0; c < chars.length; c++) {
+            var result = await usedRange.replaceAll(chars[c], "", {
+              completeMatch: false,
+              matchCase: true,
+            });
+            await context.sync();
+            totalRemoved += result.value || 0;
+          }
+        }
+      });
+
+      var sheetLabel = processAllSheets ? "all worksheets" : "the active worksheet";
+      var charLabel  = charSet.size === 1 ? "character" : "characters";
+      showStatus(
+        "Done! Removed " + totalRemoved + " instance" + (totalRemoved !== 1 ? "s" : "") +
+        " of " + charSet.size + " " + charLabel + " across " + sheetLabel + ".",
+        "success"
+      );
+    }
+  </script>
 
 </body>
 </html>
